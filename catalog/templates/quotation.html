@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Helvetica, sans-serif;
+        color: #333;
+      }
+      .header {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      .brand {
+        font-size: 24px;
+        color: #0f172a;
+        font-weight: bold;
+      }
+      .invoice-box {
+        margin-bottom: 40px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th {
+        background: #0f172a;
+        color: white;
+        padding: 10px;
+        text-align: left;
+      }
+      td {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      .total {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+        color: #0ea5e9;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 10px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="brand">NORTHERN MEDITECH</div>
+      <p>Date: {{ date }}<br />Quote #: {{ quote_id }}</p>
+    </div>
+
+    <div class="invoice-box">
+      <strong>To:</strong><br />
+      {{ customer_name }}<br />
+      {{ customer_email }}<br />
+      {{ customer_phone }}
+    </div>
+
+    <h3>Proforma Invoice / Quotation</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item / Description</th>
+          <th>Model</th>
+          <th>Price (KES)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.model_number }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="total">TOTAL: KES {{ total_amount }}</div>
+
+    <div class="footer">Valid for 30 days. Thank you for your business.</div>
+  </body>
+</html>
