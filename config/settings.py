@@ -192,7 +192,7 @@ INSTALLED_APPS = [
 'django.contrib.messages',
 'django.contrib.staticfiles',
 'corsheaders',           # <-- Make sure this is here
-'your_app_name',         # (e.g., 'shop' or 'products')
+'northernmeditech_app',         # (e.g., 'shop' or 'products')
 'rest_framework',        # (If you are using Django REST Framework)
 ]
 
