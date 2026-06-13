@@ -168,3 +168,42 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kibetalex907@gmail.com' # Your Gmail address
 EMAIL_HOST_PASSWORD = 'zqfb kcyz bqrp orka'     # <--- PASTE THE 16-CHAR CODE HERE
+import os
+import dj_database_url
+
+# ... your other settings ...
+
+# This looks for the DATABASE_URL environment variable. 
+# If it doesn't find it (e.g., on your local machine), it defaults back to sqlite.
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'),
+        conn_max_age=600
+    )
+}
+# 1. Add to ALLOWED_HOSTS so Django accepts requests directed at your Render URL
+ALLOWED_HOSTS = ['northern-meditech-app.onrender.com', 'localhost', '127.0.0.1']
+
+INSTALLED_APPS = [
+    ...,
+    'corsheaders',  # 2. Add this line near the top of Installed Apps
+    ...,
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 3. CRITICAL: Put this at the very top of Middleware
+    'django.middleware.common.CommonMiddleware',
+    ...,
+]
+
+# 4. Tell Django who is allowed to make requests to this API
+# Replace 'https://your-frontend-url.com' with your actual frontend URL (e.g., Netlify, Vercel, or localhost)
+CORS_ALLOWED_ORIGINS = [
+    "https://your-frontend-url.com", 
+    "http://localhost:3000", # If you are testing locally
+]
+
+# Alternatively, if you just want to open it completely for testing right now:
+# CORS_ALLOW_ALL_ORIGINS = True
+
+
