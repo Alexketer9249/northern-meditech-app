@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-57ep70o91f$)@y*v8pc7l=1(w&(stt4p5#-qv-$-=h%16pe&ct
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['northern-meditech-app.onrender.com',
+    'localhost',
+    '127.0.0.1']
 
 
 # Application definition
