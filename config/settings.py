@@ -185,19 +185,24 @@ DATABASES = {
 ALLOWED_HOSTS = ['northern-meditech-app.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
-    ...,
-    'corsheaders',  # 2. Add this line near the top of Installed Apps
-    ...,
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+'corsheaders',           # <-- Make sure this is here
+'your_app_name',         # (e.g., 'shop' or 'products')
+'rest_framework',        # (If you are using Django REST Framework)
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # 3. CRITICAL: Put this at the very top of Middleware
-    'django.middleware.common.CommonMiddleware',
-    ...,
-]
-
-# 4. Tell Django who is allowed to make requests to this API
-# Replace 'https://your-frontend-url.com' with your actual frontend URL (e.g., Netlify, Vercel, or localhost)
+       'corsheaders.middleware.CorsMiddleware',  # <-- This must be at the very top
+       'django.middleware.security.SecurityMiddleware',
+       'django.contrib.sessions.middleware.SessionMiddleware',
+       'django.middleware.common.CommonMiddleware',
+       # (keep the rest of your normal middleware here)
+   ]
 CORS_ALLOWED_ORIGINS = [
     "https://your-frontend-url.com", 
     "http://localhost:3000", # If you are testing locally
